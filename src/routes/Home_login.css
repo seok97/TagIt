@@ -7,21 +7,62 @@
 }
 
 .main_body {
-  width: 60%;
+  width: 100%;
+  height: 80%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   margin-top: 32px;
   padding-bottom: 32px;
+  justify-content: center;
 }
 
 .main_footer {
   width: 100%;
+  height: 20%;
   padding: 0 10px 0;
 }
 
-.main_body_login_box {
+.main_body_login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.main_body_login_wrap_box {
   width: 350px;
   height: 380px;
   border: 1px solid #dbdbdb;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.main_body_login_wrap_box_logo {
+  height: 30%;
+  overflow: hidden;
+  background-image: url("../images/logo.PNG");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: 0 110px 0;
+  padding: 10px 0;
+}
+
+.main_body_login_wrap_box_inputbox {
+  height: 70%;
+  margin-top: 24px;
+}
+
+.main_body_login_wrap_box_inputbox div {
+  margin: 0 40px 6px;
+}
+
+.main_body_login_wrap_box_input {
+  height: 38px;
+  border: 1px solid #dbdbdb;
+  border-radius: 4px;
+  background: rgba(var(--b3f, 250, 250, 250), 1);
 }
