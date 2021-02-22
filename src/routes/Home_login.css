@@ -70,6 +70,7 @@
 
 .main_body_login_wrap_box_inputbox {
   margin-top: 24px;
+  padding-bottom: 10px;
 }
 
 .main_body_login_wrap_box_input {
@@ -140,4 +141,13 @@
   line-height: 15px;
   margin: 0 18px;
   color: #8e8e8e;
+}
+
+.main_body_login_wrap_box_google {
+  text-decoration: none;
+  font: inherit;
+  vertical-align: baseline;
+  font-size: 12px;
+  line-height: 14px;
+  color: rgba(var(--fe0, 0, 55, 107), 1);
 }
