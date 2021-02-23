@@ -1,5 +1,6 @@
 import React from "react"
 import "./Home_login.css"
+import { Link } from "react-router-dom"
 
 class HomeLogin extends React.Component {
   render() {
@@ -15,7 +16,7 @@ class HomeLogin extends React.Component {
                 <form id="loginForm" method="post">
                   <div className="main_body_login_wrap_box_input divfelxbox">
                     <input
-                      id="user_id"
+                      id="user_email"
                       className="main_login_input"
                       type="text"></input>
                     <label className="inputlabel" for="user_id">
@@ -45,20 +46,15 @@ class HomeLogin extends React.Component {
                   <div className="logindecotxt">또는</div>
                   <div className="logindeco"></div>
                 </div>
-                <a
-                  className="main_body_login_wrap_box_google"
-                  tabIndex="0"
-                  href="/">
-                  계정이 없으신가요? 가입하기
+                <a className="main_body_login_wrap_box_google" tabIndex="0">
+                  <Link to="/emailsignup">계정이 없으신가요? 가입하기</Link>
                 </a>
               </div>
             </div>
           </div>
         </div>
         <div className="main_footer">
-          <div className="main_footer_inner">
-            소개 블로그 테스트 테스트 테스트 테스트 테스트 테스트 테스트
-          </div>
+          <div className="main_footer_inner">석우현의 포트폴리오 사이트</div>
         </div>
       </div>
     )
