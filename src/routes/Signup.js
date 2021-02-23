@@ -3,8 +3,20 @@ import { Link } from "react-router-dom"
 import "./Signup.css"
 
 class Signup extends React.Component {
+  SignupHandle = (user_info) => {
+    // console.log("user email" + user_info.user_email)
+    // console.log("user pw" + user_info.user_pw)
+    // console.log("user name" + user_info.user_name)
+    console.log("send sign succes")
+  }
+
   SubmitHandle = (e) => {
     e.preventDefault()
+    this.SignupHandle({
+      user_email: e.target.user_email.value,
+      user_pw: e.target.user_pw.value,
+      user_name: e.target.user_name.value,
+    })
   }
 
   render() {
@@ -18,10 +30,11 @@ class Signup extends React.Component {
                 <h1 className="main_logo_h1">TagIt</h1>
               </div>
               <div className="main_body_login_wrap_box_inputbox">
-                <form id="loginForm" method="post">
+                <form id="loginForm" onSubmit={this.SubmitHandle}>
                   <div className="signup_inputbox_wrap">
                     <input
                       id="user_email"
+                      name="user_email"
                       className="signup_inputbox"
                       type="text"></input>
                     <label className="signup_input_label" for="user_email">
@@ -32,6 +45,7 @@ class Signup extends React.Component {
                   <div className="signup_inputbox_wrap">
                     <input
                       id="user_pw"
+                      name="user_pw"
                       className="signup_inputbox"
                       type="password"></input>
                     <label className="signup_input_label" for="user_pw">
@@ -42,6 +56,7 @@ class Signup extends React.Component {
                   <div className="signup_inputbox_wrap ">
                     <input
                       id="user_name"
+                      naem="user_name"
                       className="signup_inputbox"
                       type="text"></input>
                     <label className="signup_input_label" for="user_name">
