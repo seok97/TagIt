@@ -3,6 +3,10 @@ import { Link } from "react-router-dom"
 import "./Signup.css"
 
 class Signup extends React.Component {
+  SubmitHandle = (e) => {
+    e.preventDefault()
+  }
+
   render() {
     return (
       <>
