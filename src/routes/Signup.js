@@ -4,14 +4,24 @@ import "./Signup.css"
 
 class Signup extends React.Component {
   SignupHandle = (user_info) => {
-    // console.log("user email" + user_info.user_email)
-    // console.log("user pw" + user_info.user_pw)
-    // console.log("user name" + user_info.user_name)
-    console.log("send sign succes")
+    fetch("http://localhost:3001/signup", {
+      method: "post",
+      headers: {
+        "content-type": "application/json; charset=utf-8",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(user_info),
+    })
+      .then((res) => res.json())
+      .then((obj) => {
+        console.log("succes!")
+        console.log(obj)
+      })
   }
 
   SubmitHandle = (e) => {
     e.preventDefault()
+
     this.SignupHandle({
       user_email: e.target.user_email.value,
       user_pw: e.target.user_pw.value,
