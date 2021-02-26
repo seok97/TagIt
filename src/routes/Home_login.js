@@ -3,6 +3,16 @@ import "./Home_login.css"
 import { Link } from "react-router-dom"
 
 class HomeLogin extends React.Component {
+  LoginHandle = (e) => {
+    e.preventDefault()
+    alert("미구현")
+    // this.SignupHandle({
+    //   user_email: e.target.user_email.value,
+    //   user_pw: e.target.user_pw.value,
+    //   user_name: e.target.user_name.value,
+    // })
+  }
+
   render() {
     return (
       <div className="main">
@@ -13,7 +23,7 @@ class HomeLogin extends React.Component {
                 <h1 className="main_logo_h1">TagIt</h1>
               </div>
               <div className="main_body_login_wrap_box_inputbox">
-                <form id="loginForm" method="post">
+                <form id="loginForm" method="post" onSubmit={this.LoginHandle}>
                   <div className="main_body_login_wrap_box_input divfelxbox">
                     <input
                       id="user_email"

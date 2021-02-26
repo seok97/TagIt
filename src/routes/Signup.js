@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 import "./Signup.css"
 
 class Signup extends React.Component {
+  state = { isLogin: false }
+
   SignupHandle = (user_info) => {
     fetch("http://localhost:3001/signup", {
       method: "post",
@@ -12,10 +14,13 @@ class Signup extends React.Component {
       },
       body: JSON.stringify(user_info),
     })
-      .then((res) => res.json())
-      .then((obj) => {
-        console.log("succes!")
-        console.log(obj)
+      .then((res) => {
+        return res.json()
+      })
+      .then((res) => {
+        this.setState = { isLogin: res.sqlstat }
+        console.log(this.state.isLogin)
+        res.sqlstat ? alert("회원가입 완료!") : alert("회원가입 실패!")
       })
   }
 
