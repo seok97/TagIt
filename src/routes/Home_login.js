@@ -1,19 +1,45 @@
 import React from "react"
 import "./Home_login.css"
 import { Link } from "react-router-dom"
+import Authlogin from "../auth/auth"
 
 class HomeLogin extends React.Component {
+  state = {
+    isLoginReady: false,
+    isLogin: false,
+  }
+
+  logindb = (e) => {}
+
   LoginHandle = (e) => {
     e.preventDefault()
-    alert("미구현")
-    // this.SignupHandle({
-    //   user_email: e.target.user_email.value,
-    //   user_pw: e.target.user_pw.value,
-    //   user_name: e.target.user_name.value,
-    // })
+    // alert(
+    //   `email : ${e.target.user_email.value} , pw : ${e.target.user_pw.value}`
+    // )
+    Authlogin({
+      user_email: e.target.user_email.value,
+      user_pw: e.target.user_pw.value,
+    })
+  }
+
+  // email이 null이 아니고 pw가 6자리 이상일떄 btn 활성화
+  ValueCheck = (e) => {
+    var useremail,
+      userpw = ""
+
+    if (e.target.name === "user_email") useremail = e.target.value
+    if (e.target.name === "user_pw") userpw = e.target.value
+
+    console.log(`email : ${useremail} , pw : ${userpw}`)
+
+    !useremail && userpw.length > 3
+      ? this.setState({ isLoginReady: true })
+      : this.setState({ isLoginReady: false })
   }
 
   render() {
+    const { isLoginReady } = this.state
+
     return (
       <div className="main">
         <div className="main_body">
@@ -26,24 +52,31 @@ class HomeLogin extends React.Component {
                 <form id="loginForm" method="post" onSubmit={this.LoginHandle}>
                   <div className="main_body_login_wrap_box_input divfelxbox">
                     <input
+                      onChange={this.ValueCheck}
+                      name="user_email"
                       id="user_email"
                       className="main_login_input"
                       type="text"></input>
-                    <label className="inputlabel" for="user_id">
+                    <label className="inputlabel" htmlFor="user_email">
                       사용자 이메일
                     </label>
                   </div>
                   <div className="main_body_login_wrap_box_input divfelxbox">
                     <input
+                      onChange={this.ValueCheck}
+                      name="user_pw"
                       id="user_pw"
                       className="main_login_input"
                       type="password"></input>
-                    <label className="inputlabel" for="user_pw">
+                    <label className="inputlabel" htmlFor="user_pw">
                       비밀번호
                     </label>
                   </div>
                   <div className="main_body_login_wrap_box_loginbtn divfelxbox">
-                    <button className="loginbtn" type="submit">
+                    <button
+                      className={isLoginReady ? "loginbtn loginok" : "loginbtn"}
+                      type="submit"
+                      disabled={isLoginReady ? false : "disabled"}>
                       <div className="main_body_login_wrap_box_loginbtn_btn">
                         로그인
                       </div>
@@ -56,9 +89,9 @@ class HomeLogin extends React.Component {
                   <div className="logindecotxt">또는</div>
                   <div className="logindeco"></div>
                 </div>
-                <a className="main_body_login_wrap_box_google" tabIndex="0">
+                <div className="main_body_login_wrap_box_google" tabIndex="0">
                   <Link to="/emailsignup">계정이 없으신가요? 가입하기</Link>
-                </a>
+                </div>
               </div>
             </div>
           </div>

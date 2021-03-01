@@ -25,6 +25,7 @@ app.get("/", (req, res) => {
   res.send("server on")
 })
 
+// 회원가입
 app.post("/signup", (req, res) => {
   const userinfo = req.body
   console.log(userinfo)
@@ -39,6 +40,28 @@ app.post("/signup", (req, res) => {
       } else {
         console.log("signup success!")
         res.send({ sqlstat: true })
+      }
+    }
+  )
+  DBconnection.end()
+})
+
+// 로그인
+app.post("/login", (req, res) => {
+  const userinfo = req.body
+  console.log(userinfo)
+
+  DBconnection.connect()
+  DBconnection.query(
+    `SELECT user_email, user_name FROM userinfo WHERE user_email='${userinfo.user_email}' AND user_pw='${userinfo.user_pw}';`,
+    (e, result, fields) => {
+      if (e) {
+        console.log(e)
+        res.send({ sqlstat: "login fail" })
+      } else {
+        console.log("로그인 성공!")
+        console.log(result)
+        res.send({ userinfo: result[0] })
       }
     }
   )
