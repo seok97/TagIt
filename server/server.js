@@ -5,15 +5,13 @@ const port = 3001
 // middle
 const cors = require("cors")
 const bodyParser = require("body-parser")
+// db pool
+const DBpool = require("./DBpool")
 const router = express.Router()
-
-// DB connection
-const DBconnection = require("./DBconnect")
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(cors())
-DBconnection.connect()
 
 app.get("/", (req, res) => {
   res.send("server on")
@@ -24,18 +22,21 @@ app.post("/signup", (req, res) => {
   const userinfo = req.body
   console.log(userinfo)
 
-  DBconnection.query(
-    `INSERT INTO userinfo (user_email, user_pw, user_name) VALUES ('${userinfo.user_email}', ${userinfo.user_pw}, '${userinfo.user_name}');`,
-    (e, result, fields) => {
-      if (e) {
-        console.log(e)
-        res.send({ sqlstat: false })
-      } else {
-        console.log("signup success!")
-        res.send({ sqlstat: true })
+  DBpool((conn) => {
+    conn.query(
+      `INSERT INTO userinfo (user_email, user_pw, user_name) VALUES ('${userinfo.user_email}', ${userinfo.user_pw}, '${userinfo.user_name}');`,
+      (e, result, fields) => {
+        if (e) {
+          console.log(e)
+          res.send({ sqlstat: false })
+        } else {
+          console.log("signup success!")
+          res.send({ sqlstat: true })
+        }
       }
-    }
-  )
+    )
+    conn.release()
+  })
 })
 
 // 로그인
@@ -43,18 +44,21 @@ app.post("/login", (req, res) => {
   const userinfo = req.body
   console.log(userinfo)
 
-  DBconnection.query(
-    `SELECT user_email, user_name FROM userinfo WHERE user_email='${userinfo.user_email}' AND user_pw='${userinfo.user_pw}';`,
-    (e, result, fields) => {
-      if (e) {
-        console.log(e)
-        res.send({ sqlstat: "login fail" })
-      } else {
-        console.log("로그인 성공!")
-        res.send({ userinfo: result[0] })
+  DBpool((conn) => {
+    conn.query(
+      `SELECT user_email, user_name FROM userinfo WHERE user_email='${userinfo.user_email}' AND user_pw='${userinfo.user_pw}';`,
+      (e, result, fields) => {
+        if (e) {
+          console.log(e)
+          res.send({ sqlstat: "login fail" })
+        } else {
+          console.log("로그인 성공!")
+          res.send({ userinfo: result[0] })
+        }
       }
-    }
-  )
+    )
+    conn.release()
+  })
 })
 
 app.listen(port, () => {
