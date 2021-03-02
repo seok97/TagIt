@@ -1,7 +1,8 @@
 import React from "react"
 import "./Home_login.css"
 import { Link } from "react-router-dom"
-import Authlogin from "../auth/auth"
+
+import Auth from "../auth/Auth"
 
 class HomeLogin extends React.Component {
   state = {
@@ -16,7 +17,8 @@ class HomeLogin extends React.Component {
     // alert(
     //   `email : ${e.target.user_email.value} , pw : ${e.target.user_pw.value}`
     // )
-    Authlogin({
+    const auth = new Auth()
+    auth.Authlogin({
       user_email: e.target.user_email.value,
       user_pw: e.target.user_pw.value,
     })
