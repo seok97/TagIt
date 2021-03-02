@@ -52,7 +52,7 @@ app.post("/login", (req, res) => {
           console.log(e)
           res.send({ sqlstat: "login fail" })
         } else {
-          console.log("로그인 성공!")
+          console.log("db connect success")
           res.send({ userinfo: result[0] })
         }
       }

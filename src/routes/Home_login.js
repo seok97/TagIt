@@ -3,6 +3,7 @@ import "./Home_login.css"
 import { Link } from "react-router-dom"
 
 import Auth from "../auth/Auth"
+const auth = new Auth()
 
 class HomeLogin extends React.Component {
   state = {
@@ -17,11 +18,13 @@ class HomeLogin extends React.Component {
     // alert(
     //   `email : ${e.target.user_email.value} , pw : ${e.target.user_pw.value}`
     // )
-    const auth = new Auth()
-    auth.Authlogin({
-      user_email: e.target.user_email.value,
-      user_pw: e.target.user_pw.value,
-    })
+
+    console.log(
+      auth.Authlogin({
+        user_email: e.target.user_email.value,
+        user_pw: e.target.user_pw.value,
+      })
+    )
   }
 
   // email이 null이 아니고 pw가 6자리 이상일떄 btn 활성화
@@ -32,7 +35,7 @@ class HomeLogin extends React.Component {
     if (e.target.name === "user_email") useremail = e.target.value
     if (e.target.name === "user_pw") userpw = e.target.value
 
-    console.log(`email : ${useremail} , pw : ${userpw}`)
+    // console.log(`send login info : email : ${useremail} , pw : ${userpw}`)
 
     !useremail && userpw.length > 3
       ? this.setState({ isLoginReady: true })

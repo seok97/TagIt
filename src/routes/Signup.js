@@ -52,7 +52,7 @@ class Signup extends React.Component {
                       name="user_email"
                       className="signup_inputbox"
                       type="text"></input>
-                    <label className="signup_input_label" for="user_email">
+                    <label className="signup_input_label" htmlFor="user_email">
                       사용자 이메일
                     </label>
                   </div>
@@ -63,7 +63,7 @@ class Signup extends React.Component {
                       name="user_pw"
                       className="signup_inputbox"
                       type="password"></input>
-                    <label className="signup_input_label" for="user_pw">
+                    <label className="signup_input_label" htmlFor="user_pw">
                       비밀번호
                     </label>
                   </div>
@@ -74,7 +74,7 @@ class Signup extends React.Component {
                       naem="user_name"
                       className="signup_inputbox"
                       type="text"></input>
-                    <label className="signup_input_label" for="user_name">
+                    <label className="signup_input_label" htmlFor="user_name">
                       닉네임
                     </label>
                   </div>
