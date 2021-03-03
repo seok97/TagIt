@@ -8,23 +8,23 @@ const auth = new Auth()
 class HomeLogin extends React.Component {
   state = {
     isLoginReady: false,
-    isLogin: false,
+    isLogin: {},
   }
 
   logindb = (e) => {}
 
   LoginHandle = (e) => {
     e.preventDefault()
-    // alert(
-    //   `email : ${e.target.user_email.value} , pw : ${e.target.user_pw.value}`
-    // )
-
     console.log(
-      auth.Authlogin({
+      `authlogin으로 데이터 email : ${e.target.user_email.value} , pw : ${e.target.user_pw.value}`
+    )
+
+    this.setState({
+      isLogin: auth.Authlogin({
         user_email: e.target.user_email.value,
         user_pw: e.target.user_pw.value,
-      })
-    )
+      }),
+    })
   }
 
   // email이 null이 아니고 pw가 6자리 이상일떄 btn 활성화

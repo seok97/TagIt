@@ -21,7 +21,6 @@ class Auth {
 
   // 로그인
   Authlogin = (user_info) => {
-    var resdata = {}
     fetch("http://localhost:3001/login", {
       method: "post",
       headers: {
@@ -35,11 +34,10 @@ class Auth {
       })
       .then((res) => {
         console.log(res)
-        resdata = res
+        return res
         //   var loginsession = { isLogin: true, user_info: res }
         //   return loginsession
       })
-    return resdata
   }
 }
 

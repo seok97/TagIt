@@ -42,6 +42,7 @@ app.post("/signup", (req, res) => {
 // 로그인
 app.post("/login", (req, res) => {
   const userinfo = req.body
+  console.log("server : res file = ")
   console.log(userinfo)
 
   DBpool((conn) => {
@@ -50,10 +51,12 @@ app.post("/login", (req, res) => {
       (e, result, fields) => {
         if (e) {
           console.log(e)
-          res.send({ sqlstat: "login fail" })
+          res.send({ sqlstat: "db error" })
         } else {
           console.log("db connect success")
-          res.send({ userinfo: result[0] })
+          !result[0]
+            ? res.send({ usercheck: false })
+            : res.send({ usercheck: true, userinfo: result[0] })
         }
       }
     )
