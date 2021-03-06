@@ -19,11 +19,11 @@ class HomeLogin extends React.Component {
     const { isLogin } = this.state
 
     if (isLogin.usercheck == undefined || isLogin.usercheck == false) {
-      alert("로그인 실패")
+      
     } else if (isLogin.usercheck !== undefined) {
       
       this.props.history.push({
-        pathname: "/Login",
+        pathname: "/home",
         state: {userinfo: isLogin.userinfo}
       })
     }
@@ -66,7 +66,7 @@ class HomeLogin extends React.Component {
   }
 
   render() {
-    const { isLoginReady } = this.state
+    const { isLoginReady, isLogin } = this.state
 
     return (
       <div className="main">
@@ -111,6 +111,11 @@ class HomeLogin extends React.Component {
                     </button>
                   </div>
                 </form>
+
+                <div className={
+                  (isLogin.usercheck == false) ? "idfail" : "idcheck"
+                }
+                >로그인 아이디/비밀번호가 맞지 않습니다.</div>
 
                 <div className="main_body_login_wrap_box_content">
                   <div className="logindeco"></div>

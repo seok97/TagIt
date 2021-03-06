@@ -140,6 +140,15 @@
   border-radius: 5px;
 }
 
+.idcheck {
+  display: none;
+}
+
+.idfail {
+  color: red;
+  font-size: 12px;
+}
+
 .main_body_login_wrap_box_content {
   margin: 10px 40px 18px;
   display: flex;

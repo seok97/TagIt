@@ -1,21 +1,25 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { useLocation } from "react-router-dom"
+import Nav from "../components/Nav"
+import "./Home.css"
 
-class Home extends React.Component {
-  state = { isLogin: "false" }
+function Home() {
+  const location = useLocation()
+  const user = location.state.userinfo
 
-  render() {
-    const login = this.state.isLogin
-    return (
-      <div className="homepage">
-        <div>로그인 상태 : {login}</div>
-        <h3>아이디 : </h3>
-        <h3>닉네임 : </h3>
-        <div>
-          <Link to="/">메인으로</Link>
+  return (
+    <div className="home_main">
+      <div className="home_top">
+        <div className="home_top_section01"></div>
+        <div className="home_top_navi">
+          <div className="home_top_navi_logowrap">
+            <h1 className="home_top_navi_logo">TagIt</h1>
+          </div>
         </div>
       </div>
-    )
-  }
+      <div className="home_body">바디</div>
+    </div>
+  )
 }
+
 export default Home
