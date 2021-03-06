@@ -11,19 +11,42 @@ class HomeLogin extends React.Component {
     isLogin: {},
   }
 
-  logindb = (e) => {}
+  // componentDidUpdate() {
+  //   this.LoginCheck()
+  // }
+
+  LoginCheck = () => {
+    const { isLogin } = this.state
+
+    if (isLogin.usercheck == undefined || isLogin.usercheck == false) {
+      alert("로그인 실패")
+    } else if (isLogin.usercheck !== undefined) {
+      
+      this.props.history.push({
+        pathname: "/Login",
+        state: {userinfo: isLogin.userinfo}
+      })
+    }
+  }
 
   LoginHandle = (e) => {
     e.preventDefault()
     console.log(
-      `authlogin으로 데이터 email : ${e.target.user_email.value} , pw : ${e.target.user_pw.value}`
+      `authlogin으로 보내는 데이터 email : ${e.target.user_email.value} , pw : ${e.target.user_pw.value}`
     )
 
-    this.setState({
-      isLogin: auth.Authlogin({
+    Promise.resolve(
+      auth.Authlogin({
         user_email: e.target.user_email.value,
         user_pw: e.target.user_pw.value,
-      }),
+      })
+    ).then((res) => {
+      this.setState(
+        {
+          isLogin: res,
+        },
+        this.LoginCheck
+      )
     })
   }
 

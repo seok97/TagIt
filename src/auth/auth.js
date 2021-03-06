@@ -20,8 +20,10 @@ class Auth {
   }
 
   // 로그인
-  Authlogin = (user_info) => {
-    fetch("http://localhost:3001/login", {
+  Authlogin = async (user_info) => {
+    var checkdata = {}
+
+    await fetch("http://localhost:3001/login", {
       method: "post",
       headers: {
         "content-type": "application/json; charset=utf-8",
@@ -34,10 +36,13 @@ class Auth {
       })
       .then((res) => {
         console.log(res)
-        return res
         //   var loginsession = { isLogin: true, user_info: res }
         //   return loginsession
+        checkdata = res
+        return res
       })
+
+    return checkdata
   }
 }
 
