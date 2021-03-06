@@ -8,9 +8,19 @@
   flex-shrink: 0;
 }
 
-.home_top_section01 {
-  flex-basis: 54px;
-  position: relative;
+.home_top_navi {
+  display: flex;
+  height: 54px;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.home_top_navi_inner01 {
+  display: flex;
+  justify-self: center;
 }
 
 .home_top_navi_logo {

@@ -10,10 +10,11 @@ function Home() {
   return (
     <div className="home_main">
       <div className="home_top">
-        <div className="home_top_section01"></div>
         <div className="home_top_navi">
-          <div className="home_top_navi_logowrap">
-            <h1 className="home_top_navi_logo">TagIt</h1>
+          <div className="home_top_navi_inner01">
+            <div className="home_top_navi_logowrap">
+              <h1 className="home_top_navi_logo">TagIt</h1>
+            </div>
           </div>
         </div>
       </div>
