@@ -1,12 +1,20 @@
-import React from "react"
+import React, { useState } from "react"
 import { useLocation } from "react-router-dom"
-import Nav from "../components/Nav"
+import Home_Subs from "../components/Home_Subs"
+import Home_Mypage from "../components/Home_Mypage"
 import "./Home.css"
 
+
+
 function Home() {
+  const [homenav, setHomenav] = useState("Home_Subs")
   const location = useLocation()
   const user = location.state.userinfo
-
+  
+  // function clickev(page) {
+  //   setHomenav(page)
+  // }
+  
   return (
     <div className="home_main">
       <div className="home_top">
@@ -28,7 +36,13 @@ function Home() {
           </div>
         </div>
       </div>
-      <div className="home_body">바디</div>
+      <div className="home_body">
+        <div className="home_body_contents">
+          {
+            homenav === "Home_Subs" ? <Home_Subs />:<Home_Mypage />
+          }
+        </div>
+      </div>
     </div>
   )
 }
